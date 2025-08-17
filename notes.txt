@@ -1,0 +1,12 @@
+
+vercel-web
+    - src
+        - app
+            - favicon.ico
+            - globals.css
+            - layout.tsx
+            - page.tsx
+        - components
+            - ui
+        Navbar.tsx
+        -
