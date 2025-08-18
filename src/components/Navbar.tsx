@@ -15,17 +15,17 @@ export default function Navbar() {
         {user ? (
           <>
             <span>{user.email}</span>
-            <button onClick={logout} className="btn-primary">
+            <Button variant="default" onClick={logout}>
               Logout
-            </button>
+            </Button>
           </>
         ) : (
           <>
-            <Link href="/login" className="btn-primary">
-              Login
+            <Link href="/login">
+              <Button variant="default">Login</Button>
             </Link>
-            <Link href="/signup" className="btn-secondary">
-              Signup
+            <Link href="/signup">
+              <Button variant="secondary">Signup</Button>
             </Link>
           </>
         )}

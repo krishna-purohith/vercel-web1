@@ -1,3 +1,6 @@
+import { Button } from "./ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+
 interface ProjectCardProps {
   name: string;
   status: string;
@@ -12,19 +15,23 @@ export default function ProjectCard({
   onDeploy,
 }: ProjectCardProps) {
   return (
-    <div className="p-4 bg-card rounded-lg shadow flex flex-col gap-2">
-      <h3 className="font-semibold">{name}</h3>
-      <p>Status: {status}</p>
-      {url && (
-        <a href="url" target="_blank" className="text-primary underline">
-          Visit
-        </a>
-      )}
-      {onDeploy && (
-        <button className="btn-primary mt-2" onClick={onDeploy}>
-          Deploy
-        </button>
-      )}
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>{name}</CardTitle>
+        <CardContent className="flex flex-col gap-2">
+          <p>Status: {status}</p>
+          {url && (
+            <a href={url} target="_blank" className="text-primary underline">
+              Visit
+            </a>
+          )}
+          {onDeploy && (
+            <Button className="mt-2" onClick={onDeploy}>
+              Deploy
+            </Button>
+          )}
+        </CardContent>
+      </CardHeader>
+    </Card>
   );
 }
