@@ -1,44 +1,35 @@
+"use client";
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import React from "react";
 import { Button } from "./ui/button";
 
-const Navbar = () => {
+export default function Navbar() {
+  const { user, logout } = useAuth();
+
   return (
-    <header className="border-b">
-      <div className="container mx-auto max-w-7xl flex items-center justify-between h-16 px-4">
-        <Link href="/">MyApp</Link>
-        <nav className="hidden md:flex gap-6">
-          <Link
-            href="/features"
-            className="text-sm font-medium text-foreground/70 hover:text-foreground"
-          >
-            Features
-          </Link>
-          <Link
-            href="/pricing"
-            className="text-sm font-medium text-foreground/70 hover:text-foreground"
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/pricing"
-            className="text-sm font-bold text-foreground/70 hover:text-foreground"
-          >
-            About
-          </Link>
-        </nav>
-
-        <div>
-          <Button variant="ghost" asChild>
-            <Link href="/login">Login</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signout">Signout</Link>
-          </Button>
-        </div>
+    <nav className="flex items-center justify-between p-4 border-b border-border">
+      <Link href="/" className="font-bold text-xl">
+        VercelClone
+      </Link>
+      <div className="flex gap-4 items-center">
+        {user ? (
+          <>
+            <span>{user.email}</span>
+            <button onClick={logout} className="btn-primary">
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="btn-primary">
+              Login
+            </Link>
+            <Link href="/signup" className="btn-secondary">
+              Signup
+            </Link>
+          </>
+        )}
       </div>
-    </header>
+    </nav>
   );
-};
-
-export default Navbar;
+}

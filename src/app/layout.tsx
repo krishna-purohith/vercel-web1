@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,15 +30,17 @@ export default function RootLayout({
           flex flex-col
         `}
       >
-        <Navbar />
-        <main className="flex-1 p-6">
-          <div className="container mx-auto max-w-7xl">{children}</div>
-        </main>
-        <footer className="p-4 text-sm text-center text-muted-foreground border-t">
-          <div className="container mx-auto max-w-7xl">
-            © {new Date().getFullYear()} My App. All rights reserved.
-          </div>
-        </footer>
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1 p-6">
+            <div className="container mx-auto max-w-7xl">{children}</div>
+          </main>
+          <footer className="p-4 text-sm text-center text-muted-foreground border-t">
+            <div className="container mx-auto max-w-7xl">
+              © {new Date().getFullYear()} My App. All rights reserved.
+            </div>
+          </footer>
+        </AuthProvider>
       </body>
     </html>
   );
